@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  display: grid;
+  grid-template-areas:
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 5rem;
+  height: 100vh;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  /* margin-top: auto; */
+}
