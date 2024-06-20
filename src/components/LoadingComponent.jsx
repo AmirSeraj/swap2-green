@@ -4,6 +4,9 @@ import Loading from "./loadingCircle/Loading";
 import { LiaTelegramPlane } from "react-icons/lia";
 import { RiTwitterXFill } from "react-icons/ri";
 import { PiYoutubeLogoLight } from "react-icons/pi";
+import { FlipWords } from "./flip-words";
+
+const words = ['Binance','Coinbase','CoinMarketCap','Telegram','Ton Network'];
 
 const LoadingComponent = () => {
   return (
@@ -11,6 +14,10 @@ const LoadingComponent = () => {
       <AuroraBackground>
         <div className="bg-black w-full h-full flex flex-col">
           <SparklesPreview />
+          <div className="text-white text-xl absolute w-full text-center top-[25%]">
+            Partner with
+            <FlipWords words={words} />
+          </div>
           <div className="absolute w-full h-full flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center items-center relative top-[5%]">
               <Loading />
@@ -37,7 +44,7 @@ const LoadingComponent = () => {
             </div>
           </div>
           <div className="w-full absolute left-0 bottom-40">
-            <img src="/footer-grid.svg" alt="grid" className="w-full h-full" />
+            <img src="./footer-grid.svg" alt="grid" className="w-full h-full" />
           </div>
         </div>
       </AuroraBackground>

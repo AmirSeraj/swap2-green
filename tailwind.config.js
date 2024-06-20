@@ -12,7 +12,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
 
-    "./node_modules/@nextui-org/theme/dist/components/button.js",
+    "./node_modules/@nextui-org/theme/dist/components/(button|progress).js",
   ],
   theme: {
     screens: {
