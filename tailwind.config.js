@@ -1,6 +1,6 @@
 const {
   default: flattenColorPalette,
-// eslint-disable-next-line no-undef
+  // eslint-disable-next-line no-undef
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 // tailwind.config.js
@@ -12,7 +12,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
 
-    "./node_modules/@nextui-org/theme/dist/components/(button|progress).js",
+    "./node_modules/@nextui-org/theme/dist/components/(button|progress|modal).js",
   ],
   theme: {
     screens: {
@@ -48,7 +48,12 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [nextui(), addVariablesForColors],
+  plugins: [
+    nextui(),
+    addVariablesForColors,
+    // eslint-disable-next-line no-undef
+    require("tailwindcss-3d")({ legacy: true }),
+  ],
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).

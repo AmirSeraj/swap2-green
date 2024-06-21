@@ -6,7 +6,7 @@ function EnergyProgress() {
     const {energy, energyLimit, league} = useData();
 
     return (
-        <div className={'flex flex-col gap-1 w-full mt-12'}>
+        <div className={'flex flex-col gap-1 w-full'}>
             <TrophyLevel />
             <Progress
                 size="md"
