@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@nextui-org/button";
 
 const CustomButton = ({

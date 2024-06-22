@@ -10,7 +10,7 @@ export const DataProvider = ({ children }) => {
   const [lastBalance, setLastBalance] = useState(0);
   const [league, setLeague] = useState(0);
   const [guru, setGuru] = useState(false);
-  const [guruLeft, setGuruLeft] = useState(3);
+  const [guruLeft, setGuruLeft] = useState(0);
   const [refillLeft, setRefillLeft] = useState(3);
   const [multiTap, setMultiTap] = useState(1);
 

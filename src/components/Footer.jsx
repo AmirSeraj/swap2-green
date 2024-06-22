@@ -5,9 +5,7 @@ import { RiSpeedUpLine } from "react-icons/ri";
 import { IoStatsChartOutline } from "react-icons/io5";
 import CustomButton from "./NextUi/CustomBtn";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 const links = [
   {

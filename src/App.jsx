@@ -20,7 +20,8 @@ import Boost from "./pages/Boost";
 import Stats from "./pages/Stats";
 import { useEffect, useState } from "react";
 import LoadingComponent from "./components/LoadingComponent";
-import {DataProvider, useData} from "./components/Context.jsx";
+import { DataProvider, useData } from "./components/Context.jsx";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const data = useData();
@@ -29,22 +30,25 @@ function App() {
   return (
     <NextUIProvider>
       {/*{loading && <LoadingComponent />}*/}
-      <BrowserRouter>
-        <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] xs:p-[10px] p-[3px] pb-0">
-          <main>
+      <DataProvider>
+        <BrowserRouter>
+          <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] xs:px-3 px-1 pb-2">
+            <main>
               <Routes>
                 <Route path="/exchange" Component={Exchange} />
+                <Route path="/" Component={Exchange} />
                 <Route path="/friends" Component={Friends} />
                 <Route path="/earn" Component={Earn} />
                 <Route path="/boost" Component={Boost} />
                 <Route path="/stats" Component={Stats} />
               </Routes>
-          </main>
-          <footer>
-            <Footer />
-          </footer>
-        </div>
-      </BrowserRouter>
+            </main>
+            <footer>
+              <Footer />
+            </footer>
+          </div>
+        </BrowserRouter>
+      </DataProvider>
     </NextUIProvider>
   );
 }

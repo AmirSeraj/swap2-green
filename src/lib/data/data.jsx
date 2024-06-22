@@ -1,0 +1,116 @@
+import { FaTelegramPlane } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
+import { GiThreeFriends } from "react-icons/gi";
+import { SiTerraform } from "react-icons/si";
+
+export const Refs = [
+  {
+    title: "invite 1 ",
+    reward: 15000,
+    threshold: 1,
+  },
+  {
+    title: "invite 3 ",
+    reward: 75000,
+    threshold: 3,
+  },
+  {
+    title: "invite 10 ",
+    reward: 2000000,
+    threshold: 10,
+  },
+  {
+    title: "invite 25 ",
+    reward: 7500000,
+    threshold: 25,
+  },
+  {
+    title: "invite 100 ",
+    reward: 20000000,
+    threshold: 100,
+  },
+  {
+    title: "invite 250 ",
+    reward: 50000000,
+    threshold: 250,
+  },
+  {
+    title: "invite 999 ",
+    reward: 999999999,
+    threshold: 999,
+  },
+];
+
+export const Trophies = [
+  {
+    title: "Wood",
+    src: "./trophy/Wood.png",
+    reward: 5000,
+    threshold: 1,
+  },
+  {
+    title: "Metal",
+    src: "./trophy/Metal.png",
+    reward: 50000,
+    threshold: 5000,
+  },
+  {
+    title: "Bronze",
+    src: "./trophy/Bronze.png",
+    reward: 10000,
+    threshold: 75000,
+  },
+  {
+    title: "Silver",
+    src: "./trophy/Silver.png",
+    reward: 15000,
+    threshold: 500000,
+  },
+  {
+    title: "Gold",
+    src: "./trophy/Gold.png",
+    reward: 25000,
+    threshold: 2500000,
+  },
+  {
+    title: "Diamond",
+    src: "./trophy/Diamond.png",
+    reward: 35000,
+    threshold: 10000000,
+  },
+];
+
+export const TaskList = [
+    {
+      id: 0,
+      icon: <FaTelegramPlane size={28} color="yellow" />,
+      icon_lg: <FaTelegramPlane size={44} color="yellow" />,
+      title: "Join our TG channel",
+      reward: 6000,
+      claimed: false,
+    },
+    {
+      id: 1,
+      icon: <BsTwitterX size={30} color="yellow" />,
+      icon_lg: <BsTwitterX size={44} color="yellow" />,
+      title: "Follow our X account",
+      reward: 12000,
+      claimed: false,
+    },
+    {
+      id: 2,
+      icon: <GiThreeFriends size={30} color="yellow" />,
+      icon_lg: <GiThreeFriends size={44} color="yellow" />,
+      title: "Invite  3 friends",
+      reward: 9000,
+      claimed: true,
+    },
+    {
+      id: 3,
+      icon: <SiTerraform size={30} color="yellow" />,
+      icon_lg: <SiTerraform size={44} color="yellow" />,
+      title: "Visit site",
+      reward: 3500,
+      claimed: false,
+    },
+  ];
