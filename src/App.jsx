@@ -27,9 +27,12 @@ function App() {
   const data = useData();
   const loading = data.loading;
 
+  if (loading) {
+    return <LoadingComponent />
+  }
+
   return (
     <NextUIProvider>
-      {loading && <LoadingComponent />}
       <DataProvider>
         <BrowserRouter>
           <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] xs:px-3 px-1 pb-2">
