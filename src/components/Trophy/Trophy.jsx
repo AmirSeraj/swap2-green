@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { useData } from "@/components/Context.jsx";
+import { useData } from "../../components/Context";
 
 export const Refs = [
   {

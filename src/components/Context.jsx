@@ -9,8 +9,8 @@ export const DataProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   const [lastBalance, setLastBalance] = useState(0);
   const [league, setLeague] = useState(0);
-  const [guru, setGuru] = useState(true);
-  const [guruLeft, setGuruLeft] = useState(0);
+  const [guru, setGuru] = useState(false);
+  const [guruLeft, setGuruLeft] = useState(2);
   const [refillLeft, setRefillLeft] = useState(3);
   const [multiTap, setMultiTap] = useState(1);
 
@@ -167,7 +167,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    },3000)
+    },1000)
   },[])
 
   const values = {

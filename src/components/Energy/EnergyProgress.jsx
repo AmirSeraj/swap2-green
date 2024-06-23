@@ -2,12 +2,14 @@ import {Progress} from "@nextui-org/progress";
 import {useData} from "../Context.jsx";
 import TrophyLevel from "../TrophyLevel.jsx";
 
-function EnergyProgress() {
+function EnergyProgress({topNotShow}) {
     const {energy, energyLimit, league} = useData();
 
     return (
         <div className={'flex flex-col gap-1 w-full'}>
-            <TrophyLevel />
+            {
+                !topNotShow && <TrophyLevel/>
+            }
             <Progress
                 size="md"
                 radius="sm"

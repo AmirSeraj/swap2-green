@@ -35,7 +35,7 @@ const ModalComponent = ({ isOpen, onOpenChange, cardInfo, onClick }) => {
               <div className="flex items-center justify-center gap-2">
                 <img className="w-10 h-10" src="./coin.png" alt="coin" />
                 <span className="text-black text-2xl font-bold">
-                  {Number(cardInfo.reward).toLocaleString()}
+                  {cardInfo.reward === 'Free' ? 'Free' : Number(cardInfo.reward).toLocaleString()}
                 </span>
               </div>
             </ModalBody>

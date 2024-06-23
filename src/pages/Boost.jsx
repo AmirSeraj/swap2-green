@@ -71,10 +71,21 @@ const Boost = () => {
 
   const handleDailyBoosters = (daily_booster) => {
     if (daily_booster === "guru") {
+      setBoostInfo({
+        title: "Guru",
+        icon_lg: <VscFlame color={'yellow'} size={60} />,
+        reward: 'Free',
+      })
       // send and update guru data....
     } else {
+      setBoostInfo({
+        title: "Refill Tank",
+        icon_lg: <BsFillLightningChargeFill color={'yellow'} size={60} />,
+        reward: 'Free',
+      })
       // send and update full_tank data....
     }
+    onOpen();
   };
 
   return (
@@ -86,7 +97,7 @@ const Boost = () => {
       <div className="flex justify-between items-center gap-1">
         {/* Guru */}
         <div
-          onClick={() => handleDailyBoosters("guru")}
+          onClick={data.guruLeft === 0 ? () => {} : () => handleDailyBoosters("guru")}
           className={`${
             data.guruLeft === 0 ? "bg-gray-500" : 'bg-gradient-to-r from-slate-700 to-slate-500'
           } w-1/2 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center h-14`}
