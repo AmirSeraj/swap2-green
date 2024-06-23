@@ -21,7 +21,6 @@ import Stats from "./pages/Stats";
 import { useEffect, useState } from "react";
 import LoadingComponent from "./components/LoadingComponent";
 import { DataProvider, useData } from "./components/Context.jsx";
-import { Navigate } from "react-router-dom";
 
 function App() {
   const data = useData();
@@ -35,7 +34,7 @@ function App() {
     <NextUIProvider>
       <DataProvider>
         <BrowserRouter>
-          <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] xs:px-3 px-1 pb-2">
+          <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
             <main>
               <Routes>
                 <Route path="/exchange" Component={Exchange} />
