@@ -1,53 +1,12 @@
 import {IoIosArrowForward} from "react-icons/io";
 import {IoCheckmarkSharp} from "react-icons/io5";
 import {Button} from "../ui/MovingBorders";
-import {Trophies} from "../Trophy/Trophy.jsx";
-// import {TaskList} from "../../lib/data/data.jsx";
-// import React from "react";
 import ModalComponent from "../ModalComponent.jsx";
 import {useDisclosure} from "@nextui-org/react";
-import {FaTelegramPlane} from "react-icons/fa";
-import {BsTwitterX} from "react-icons/bs";
-import {GiThreeFriends} from "react-icons/gi";
-import {SiTerraform} from "react-icons/si";
-import {useEffect, useState} from "react";
-
-/* eslint-disable */
+import {useState} from "react";
 
 
-// const Troph = [[{
-//     id: 0, title: "Wood", src: "./trophy/Wood.png", reward: 5000, threshold: 1,
-// }, {
-//     id: 1,
-//
-//     title: "Metal", src: "./trophy/Metal.png", reward: 50000, threshold: 5000,
-// }, {
-//     id: 2,
-//
-//     title: "Bronze", src: "./trophy/Bronze.png", reward: 10000, threshold: 75000,
-// }, {
-//     id: 3,
-//
-//     title: "Silver", src: "./trophy/Silver.png", reward: 15000, threshold: 500000,
-// }, {
-//     id: 4,
-//
-//     title: "Gold", src: "./trophy/Gold.png", reward: 25000, threshold: 2500000,
-// }, {
-//     id: 5,
-//
-//     title: "Diamond", src: "./trophy/Diamond.png", reward: 35000, threshold: 10000000,
-// },], (setter, obj) => {
-//     setter(obj)
-// }]
-//
-//
-//
-// export const TaskSetter = (index) => {
-//     setter(index)
-// }
-
-
+// eslint-disable-next-line react/prop-types
 function ModalCard({isOpen, onOpen, onClick, cardInfo, onOpenChange}) {
     return (<ModalComponent
         isOpen={isOpen}
@@ -59,19 +18,16 @@ function ModalCard({isOpen, onOpen, onClick, cardInfo, onOpenChange}) {
 }
 
 
-export const Cards = ({obj_list, callback, modalCallback}) => {
-
-    async function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+// eslint-disable-next-line react/prop-types
+export const Cards = ({obj_list, callback}) => {
 
     const [cardInfo, setCardInfo] = useState()
 
 
     return (<div className="w-full flex flex-col gap-1">
+        {/* eslint-disable-next-line react/prop-types */}
         {obj_list.map((task, index) => {
             const {onOpen, isOpen, onOpenChange} = useDisclosure();
-
             return (<>
                     <Card
                         timeOut={index * 200}

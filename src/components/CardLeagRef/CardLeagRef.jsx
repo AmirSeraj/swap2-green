@@ -1,6 +1,4 @@
 
-
-import React from 'react';
 import EnergyProgress from "../Energy/EnergyProgress.jsx";
 import CustomButton from "../NextUi/CustomBtn.jsx";
 

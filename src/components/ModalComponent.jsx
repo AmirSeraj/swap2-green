@@ -18,9 +18,10 @@ const ModalComponent = ({ isOpen, onOpenChange, cardInfo, onClick }) => {
   return (
     <Modal
       isOpen={isOpen}
-      placement="auto"
+      placement="center"
       onOpenChange={onOpenChange}
-      className="bg-slate-400 rounded-t-3xl border-t-4 border-yellow-300 [box-shadow:1px_-8px_29px_-11px_rgba(247,255,0,1)]"
+      // [box-shadow:1px_-8px_29px_-11px_rgba(247,255,0,1)]
+      className="bg-slate-400 rounded-t-3xl border-t-4 border-yellow-300 [box-shadow:5px_3px_25px_4px_rgba(247,255,0,1)]"
     >
       <ModalContent>
         {(onClose) => (

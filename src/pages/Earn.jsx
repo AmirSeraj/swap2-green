@@ -2,7 +2,7 @@ import Card, {Cards} from "../components/Card/Card";
 import {useDisclosure} from "@nextui-org/react";
 import React, {useState} from "react";
 import Tabs from "../components/Earn/Tabs";
-import { Trophies} from "../lib/data/data";
+import {Refs, Trophies} from "../lib/data/data";
 import {useEffect} from "react";
 // import ModalComponent from "../components/ModalComponent";
 import CardLeagRef from "../components/CardLeagRef/CardLeagRef.jsx";
@@ -10,8 +10,7 @@ import {FaTelegramPlane} from "react-icons/fa";
 import {BsTwitterX} from "react-icons/bs";
 import {GiThreeFriends} from "react-icons/gi";
 import {SiTerraform} from "react-icons/si";
-// import {FaUserFriends} from "react-icons/fa";
-
+import {FaUserFriends} from "react-icons/fa";
 
 
 export const TaskList = [{
@@ -101,9 +100,11 @@ const Earn = () => {
                         //     ))}
                         // </div>
                         <Cards
-                        obj_list={TaskList}
-                        callback={()=>{}}
-                        modalCallback={()=>{}}tr
+                            obj_list={TaskList}
+                            callback={() => {
+                            }}
+                            modalCallback={() => {
+                            }}
                         />
                     )}
 
@@ -112,6 +113,16 @@ const Earn = () => {
                             {Trophies.map((trophy, index) => (
                                 <CardLeagRef onClick={handleClaimLeague} league_img={true} price={trophy.reward}
                                              key={index} icon={trophy.src}
+                                             title={trophy.title} reward={trophy.reward}/>
+                            ))}
+                        </div>
+                    )}
+
+                    {tabActive === "Ref Tasks" && (
+                        <div className="w-full flex flex-col gap-1 mb-1">
+                            {Refs.map((trophy, index) => (
+                                <CardLeagRef onClick={handleClaimLeague} league_img={false} price={trophy.reward}
+                                             key={index} icon={<FaUserFriends color={'white'} size={32} />}
                                              title={trophy.title} reward={trophy.reward}/>
                             ))}
                         </div>
