@@ -73,16 +73,16 @@ const Boost = () => {
     if (daily_booster === "guru") {
       setBoostInfo({
         title: "Guru",
-        icon_lg: <VscFlame color={'yellow'} size={60} />,
-        reward: 'Free',
-      })
+        icon_lg: <VscFlame color={"yellow"} size={60} />,
+        reward: "Free",
+      });
       // send and update guru data....
     } else {
       setBoostInfo({
         title: "Refill Tank",
-        icon_lg: <BsFillLightningChargeFill color={'yellow'} size={60} />,
-        reward: 'Free',
-      })
+        icon_lg: <BsFillLightningChargeFill color={"yellow"} size={60} />,
+        reward: "Free",
+      });
       // send and update full_tank data....
     }
     onOpen();
@@ -97,12 +97,16 @@ const Boost = () => {
       <div className="flex justify-between items-center gap-1">
         {/* Guru */}
         <div
-          onClick={data.guruLeft === 0 ? () => {} : () => handleDailyBoosters("guru")}
+          onClick={
+            data.guruLeft === 0 ? () => {} : () => handleDailyBoosters("guru")
+          }
           className={`${
-            data.guruLeft === 0 ? "bg-gray-500" : 'bg-gradient-to-r from-slate-700 to-slate-500'
+            data.guruLeft === 0
+              ? "bg-gray-500"
+              : "bg-gradient-to-r from-slate-700 to-slate-500"
           } w-1/2 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center h-14`}
         >
-          <VscFlame color={data.guruLeft === 0 ? '#ccc' : 'yellow'} size={30} />
+          <VscFlame color={data.guruLeft === 0 ? "#ccc" : "yellow"} size={30} />
           <div className="flex flex-col">
             <span
               className={`${
@@ -116,7 +120,9 @@ const Boost = () => {
                 data.guruLeft === 0 ? "text-gray-400 text-sm" : "text-gray-100"
               }`}
             >
-              {data.guruLeft !== 0 ? (data.guruLeft + ' / ' + 3) :  '10h : 16m : 17s'}
+              {data.guruLeft !== 0
+                ? data.guruLeft + " / " + 3
+                : "10h : 16m : 17s"}
             </span>
           </div>
         </div>
@@ -124,7 +130,9 @@ const Boost = () => {
         <div
           onClick={() => handleDailyBoosters("full_tank")}
           className={`w-1/2 h-14 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center ${
-            data.refillLeft === 0 ? "bg-gray-700" : 'bg-gradient-to-r from-slate-700 to-slate-500'
+            data.refillLeft === 0
+              ? "bg-gray-700"
+              : "bg-gradient-to-r from-slate-700 to-slate-500"
           }`}
         >
           <BsFillLightningChargeFill size={28} color={"yellow"} />
@@ -138,10 +146,14 @@ const Boost = () => {
             </span>
             <span
               className={`${
-                data.refillLeft === 0 ? "text-gray-400 text-xs" : "text-gray-100"
+                data.refillLeft === 0
+                  ? "text-gray-400 text-xs"
+                  : "text-gray-100"
               }`}
             >
-              {data.refillLeft !== 0 ? (data.refillLeft + ' / ' + 3) :  '10h:16m:17s'}
+              {data.refillLeft !== 0
+                ? data.refillLeft + " / " + 3
+                : "10h:16m:17s"}
             </span>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import { createContext } from "react";
+import { Trophies } from "../lib/data/data";
 
 export const DataContext = createContext();
 
@@ -127,30 +128,30 @@ export const DataProvider = ({ children }) => {
     setLastBalance(balance + valueEarned);
   };
 
-  // function tap() {
-  //   if (isGuru()) {
-  //     balanceUp(clickValue());
-  //     const newAmount = amount + clickValue();
-  //     setAmount(newAmount);
-  //     if (newAmount > Trophies[league].threshold) {
-  //       setLeague(league + 1);
-  //     }
-  //     setLastClick(Number(new Date()));
-  //     return true;
-  //   } else {
-  //     if (energyTransaction(-clickValue())) {
-  //       balanceUp(clickValue());
-  //       const newAmount = amount + clickValue();
-  //       setAmount(newAmount);
-  //       if (amount > Trophies[league].threshold) {
-  //         setLeague(league + 1);
-  //       }
-  //       setLastClick(Number(new Date()));
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  function tap() {
+    if (isGuru()) {
+      balanceUp(clickValue());
+      const newAmount = amount + clickValue();
+      setAmount(newAmount);
+      if (newAmount > Trophies[league].threshold) {
+        setLeague(league + 1);
+      }
+      setLastClick(Number(new Date()));
+      return true;
+    } else {
+      if (energyTransaction(-clickValue())) {
+        balanceUp(clickValue());
+        const newAmount = amount + clickValue();
+        setAmount(newAmount);
+        if (amount > Trophies[league].threshold) {
+          setLeague(league + 1);
+        }
+        setLastClick(Number(new Date()));
+        return true;
+      }
+    }
+    return false;
+  }
 
   function botUp() {
     if (energyLimit * 500 === energy) {
@@ -163,12 +164,6 @@ export const DataProvider = ({ children }) => {
     setImgLoad(imgLoad + 1);
   }
   const [loaded, setLoaded] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    },1000)
-  },[])
 
   const values = {
     balanceUp,
@@ -205,7 +200,7 @@ export const DataProvider = ({ children }) => {
     energyTransaction,
     energySpeed,
     setEnergySpeed,
-    // tap,
+    tap,
     lastClick,
     setLastClick,
     MaxEnergy,
