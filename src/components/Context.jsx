@@ -1,6 +1,11 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { createContext } from "react";
 import { Trophies } from "../lib/data/data";
+import { FaTelegramPlane } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
+import { GiThreeFriends } from "react-icons/gi";
+import { SiTerraform } from "react-icons/si";
+import { useEffect } from "react";
 
 export const DataContext = createContext();
 
@@ -12,7 +17,7 @@ export const DataProvider = ({ children }) => {
   const [league, setLeague] = useState(0);
   const [guru, setGuru] = useState(false);
   const [guruLeft, setGuruLeft] = useState(2);
-  const [refillLeft, setRefillLeft] = useState(3);
+  const [refillLeft, setRefillLeft] = useState(0);
   const [multiTap, setMultiTap] = useState(1);
 
   const [energy, setEnergy] = useState(30);
@@ -29,7 +34,6 @@ export const DataProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
   const [amount, setAmount] = useState(0);
   const [taskClaimed, setTaskClaimed] = useState([]);
-  const [tasks, setTasks] = useState([]);
   const [fetched, setFetched] = useState(false);
 
   const [leagueClaimed, setLeagueClaimed] = useState([]);
@@ -229,8 +233,6 @@ export const DataProvider = ({ children }) => {
     setAmount,
     taskClaimed,
     setTaskClaimed,
-    tasks,
-    setTasks,
     leagueClaimed,
     setLeagueClaimed,
     LeagueClaimedByUser,
@@ -238,12 +240,12 @@ export const DataProvider = ({ children }) => {
     setRefClaimed,
     loading,
     setLoading,
-    guru
+    guru,
   };
 
   return <DataContext.Provider value={values}>{children}</DataContext.Provider>;
 };
 
 export const useData = () => {
-    return useContext(DataContext);
-}
+  return useContext(DataContext);
+};

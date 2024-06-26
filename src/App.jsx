@@ -79,7 +79,6 @@ function App() {
     setFriends,
     setReferrals,
     amount,
-    setTasks,
     setAmount,
     taskClaimed,
     setTaskClaimed,
@@ -100,81 +99,56 @@ function App() {
   const initData = 142536;
 
   useEffect(() => {
-    if (!fetched) {
-      setFetched(true);
-      // const user_id = initData?.user?.id;
-      const user_id = 1245885;
-      setUserId(user_id);
-      fetch(`https://api.spxswap.com/${user_id}`)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          initUpdateTime(data.nextupdate, data.guruleft, data.refillleft);
-          setMultiTap(data.multi);
-          setEnergyLimit(data.limite);
-          setEnergySpeed(data.speed);
-          setAutoBot(data.bot);
-          setReferrals(data.refs.length);
-          setFriends(data.refs);
-          setAmount(data.amount);
-          for (let i = 0; i < Trophies.length; i++) {
-            if (data.amount <= Trophies[i].threshold) {
-              setLeague(i);
-              break;
-            }
-          }
-          setTaskClaimed(data.taskcl);
-          setLeagueClaimed(data.leaguecl);
-          setRefClaimed(data.referralcl);
-          let ener_now = energyInit(
-            data.energy,
-            data.lastonline,
-            data.limite,
-            data.speed
-          );
-          balanceInit(
-            data.balance,
-            data.lastonline,
-            data.bot,
-            data.speed,
-            ener_now,
-            data.limite
-          );
-          setLoading(false);
-        });
-    }
-    setTasks([
-      {
-        id: 0,
-        url: "https://t.me/airdrop_game_swap",
-        title: "Join AirDrops",
-        reward: 300000,
-        typess: "tg",
-      },
-      {
-        id: 1,
-        url: "https://t.me/spacexswap",
-        title: "Join Our Channel!",
-        reward: 400000,
-        typess: "tg",
-      },
-      {
-        id: 2,
-        url: "https://x.com/spacexswap1",
-        title: "Follow Our X Handle",
-        reward: 100000,
-        typess: "x",
-      },
-      {
-        id: 3,
-        url: "https://spxswap.com",
-        title: "Visit Our Website",
-        reward: 100000,
-        typess: "o",
-      },
-    ]);
+    // if (!fetched) {
+    //   setFetched(true);
+    //   // const user_id = initData?.user?.id;
+    //   const user_id = 1245885;
+    //   setUserId(user_id);
+    //   fetch(`https://api.spxswap.com/${user_id}`)
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     .then((data) => {
+    //       initUpdateTime(data.nextupdate, data.guruleft, data.refillleft);
+    //       setMultiTap(data.multi);
+    //       setEnergyLimit(data.limite);
+    //       setEnergySpeed(data.speed);
+    //       setAutoBot(data.bot);
+    //       setReferrals(data.refs.length);
+    //       setFriends(data.refs);
+    //       setAmount(data.amount);
+    //       for (let i = 0; i < Trophies.length; i++) {
+    //         if (data.amount <= Trophies[i].threshold) {
+    //           setLeague(i);
+    //           break;
+    //         }
+    //       }
+    //       setTaskClaimed(data.taskcl);
+    //       setLeagueClaimed(data.leaguecl);
+    //       setRefClaimed(data.referralcl);
+    //       let ener_now = energyInit(
+    //         data.energy,
+    //         data.lastonline,
+    //         data.limite,
+    //         data.speed
+    //       );
+    //       balanceInit(
+    //         data.balance,
+    //         data.lastonline,
+    //         data.bot,
+    //         data.speed,
+    //         ener_now,
+    //         data.limite
+    //       );
+    //       setLoading(false);
+    //     });
+    // }
   }, [initData]);
+
+  useEffect(() => {
+    setTaskClaimed([0]);
+    setLeagueClaimed([0,1])
+  },[])
 
   useEffect(() => {
     if (energy !== -1) {

@@ -8,12 +8,24 @@ import {
 } from "@nextui-org/react";
 import CustomButton from "./NextUi/CustomBtn";
 
-const ModalComponent = ({ isOpen, onOpenChange, cardInfo, onClick }) => {
+const ModalComponent = ({
+  isOpen,
+  onOpenChange,
+  cardInfo,
+  onClick,
+  isDisabledGo,
+  isDisabledCheck,
+  handleClickGo
+}) => {
   const handlePress = (onClose) => {
     onClose();
     onClick();
   };
 
+  const handlePressGo = (onClose) => {
+    handleClickGo();
+    onClose()
+  }
 
   return (
     <Modal
@@ -33,14 +45,29 @@ const ModalComponent = ({ isOpen, onOpenChange, cardInfo, onClick }) => {
               <h1 className="text-center font-bold text-2xl">
                 {cardInfo.title}
               </h1>
+              <div className="w-full flex justify-center">
+                <CustomButton
+                  className="w-1/3 py-4.5"
+                  size="lg"
+                  color="primary"
+                  onClick={() => handlePressGo(onClose)}
+                  radius={"lg"}
+                  variant={"shadow"}
+                  isDisabled={isDisabledGo}
+                >
+                  Go
+                </CustomButton>
+              </div>
               <div className="flex items-center justify-center gap-2">
                 <img className="w-10 h-10" src="./coin.png" alt="coin" />
                 <span className="text-black text-2xl font-bold">
-                  {cardInfo.reward === 'Free' ? 'Free' : Number(cardInfo.reward).toLocaleString()}
+                  {cardInfo.reward === "Free"
+                    ? "Free"
+                    : Number(cardInfo.reward).toLocaleString()}
                 </span>
               </div>
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter className="flex flex-col gap-2 justify-center items-center">
               <CustomButton
                 className="w-full py-9"
                 size="lg"
@@ -48,6 +75,7 @@ const ModalComponent = ({ isOpen, onOpenChange, cardInfo, onClick }) => {
                 onClick={() => handlePress(onClose)}
                 radius={"lg"}
                 variant={"shadow"}
+                isDisabled={isDisabledCheck}
               >
                 Check
               </CustomButton>

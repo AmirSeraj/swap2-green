@@ -7,6 +7,9 @@ import { useEffect } from "react";
 import ModalComponent from "../components/ModalComponent.jsx";
 import { useState } from "react";
 import { FcLike } from "react-icons/fc";
+import ExchangeTasks from "../components/Exchange/ExchangeTasks.jsx";
+import UserInfo from "../components/Exchange/UserInfo.jsx";
+import EnergyBoost from "../components/Exchange/EnergyBoost.jsx";
 
 const Exchange = () => {
   const { earned, setEarned, loaded } = useData();
@@ -37,9 +40,12 @@ const Exchange = () => {
           "xs:px-11 px-6 pb-3 flex flex-col justify-evenly gap-3 items-center w-full h-full"
         }
       >
+        <UserInfo />
+        <ExchangeTasks />
         <Balance />
         <EnergyProgress />
         <Coin />
+        <EnergyBoost />
       </div>
     </>
   );
