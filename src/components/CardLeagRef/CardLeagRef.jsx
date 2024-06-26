@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import clsx from "clsx";
 import EnergyProgress from "../Energy/EnergyProgress.jsx";
 import CustomButton from "../NextUi/CustomBtn.jsx";
 
@@ -11,15 +10,17 @@ function CardLeagRef({
   league_img,
   isLoading,
   onClick,
-  claimed
+  claimed,
+  energyNow,
+  energyLimit,
 }) {
   return (
     // flex flex-col gap-1 justify-center p-2 rounded-xl border border-slate-500 bg-gradient-to-b from-slate-700 to-green-200
     <div
       key={key}
-      className={
-        `${claimed && 'hidden'} w-full bg-black bg-grid-white/[0.2] relative flex flex-col justify-center p-2 rounded-lg overflow-hidden gap-1`
-      }
+      className={`${
+        claimed && "hidden"
+      } w-full bg-black bg-grid-white/[0.2] relative flex flex-col justify-center p-2 rounded-lg overflow-hidden gap-1`}
     >
       <div
         className="absolute pointer-events-none inset-0 flex items-center justify-center bg-[#ccc]
@@ -47,12 +48,17 @@ function CardLeagRef({
           onClick={onClick}
           isLoading={isLoading}
           variant={"shadow"}
-          color={"primary"}
+          color={energyNow < energyLimit ? "default" : "primary"}
+          isDisabled={energyNow < energyLimit}
         >
           Claim
         </CustomButton>
       </div>
-      <EnergyProgress topNotShow={true} />
+      <EnergyProgress
+        energyNow={energyNow}
+        energyLimit={energyLimit}
+        topNotShow={true}
+      />
     </div>
   );
 }

@@ -148,6 +148,7 @@ function App() {
   useEffect(() => {
     setTaskClaimed([0]);
     setLeagueClaimed([0,1])
+    setAmount(3000000)
   },[])
 
   useEffect(() => {

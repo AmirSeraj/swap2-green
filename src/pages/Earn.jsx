@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Card, { Cards } from "../components/Card/Card";
 import { useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
@@ -83,22 +84,26 @@ const Earn = () => {
           {tabActive === "Leagues" && (
             <div className="w-full flex flex-col gap-1 mb-1">
               {Trophies.map((trophy, index) => {
-                console.log(leagueClaimed.indexOf(index) !== -1);
                 return (
                   <CardLeagRef
-                    claimed={
-                      leagueClaimed.indexOf(index) !== -1 ? true : false
-                    }
-                    className={
-                      Array(leagueClaimed).indexOf(index) === 1 && "hidden"
-                    }
-                    onClick={handleClaimLeague}
+                    // claimed={
+                    //   leagueClaimed.indexOf(index) !== -1 ? true : false
+                    // }
+                    claimed={leagueClaimed.includes(index)}
+                    onClick={() => {
+                      setTimeout(() => {
+                        setLeagueClaimed([...leagueClaimed, index]);
+                        balanceUp(trophy.reward);
+                      },1500);
+                    }}
                     league_img={true}
                     price={trophy.reward}
                     key={index}
                     icon={trophy.src}
                     title={trophy.title}
                     reward={trophy.reward}
+                    energyNow={amount}
+                    energyLimit={trophy.threshold}
                   />
                 );
               })}

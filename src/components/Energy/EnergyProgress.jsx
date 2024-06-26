@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import {Progress} from "@nextui-org/progress";
-import {useData} from "../Context.jsx";
 import TrophyLevel from "../TrophyLevel.jsx";
 
-function EnergyProgress({topNotShow}) {
-    const {energy, energyLimit} = useData();
+function EnergyProgress({topNotShow, energyNow, energyLimit}) {
 
     return (
         <div className={'flex flex-col gap-1 w-full'}>
@@ -21,7 +19,7 @@ function EnergyProgress({topNotShow}) {
                     label: "tracking-wider font-medium text-default-600",
                     value: "text-foreground/60",
                 }}
-                value={(energy / (energyLimit * 500)) * 100}
+                value={(energyNow / energyLimit) * 100}
                 // value={60}
                 color={'success'}
             />

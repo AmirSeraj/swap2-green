@@ -1,11 +1,6 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
 import { Trophies } from "../lib/data/data";
-import { FaTelegramPlane } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
-import { GiThreeFriends } from "react-icons/gi";
-import { SiTerraform } from "react-icons/si";
-import { useEffect } from "react";
 
 export const DataContext = createContext();
 

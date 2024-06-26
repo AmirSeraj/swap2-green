@@ -15,6 +15,7 @@ const Exchange = () => {
   const { earned, setEarned, loaded } = useData();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [cardInfo, setCardInfo] = useState([]);
+  const { energy, energyLimit } = useData();
 
   useEffect(() => {
     if (earned !== 0 && !loaded) {
@@ -43,7 +44,7 @@ const Exchange = () => {
         <UserInfo />
         <ExchangeTasks />
         <Balance />
-        <EnergyProgress />
+        <EnergyProgress energyNow={energy} energyLimit={energyLimit * 500} />
         <Coin />
         <EnergyBoost />
       </div>
