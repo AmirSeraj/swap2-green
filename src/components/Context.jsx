@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
   const [league, setLeague] = useState(0);
   const [guru, setGuru] = useState(false);
   const [guruLeft, setGuruLeft] = useState(2);
-  const [refillLeft, setRefillLeft] = useState(0);
+  const [refillLeft, setRefillLeft] = useState(2);
   const [multiTap, setMultiTap] = useState(1);
 
   const [energy, setEnergy] = useState(30);

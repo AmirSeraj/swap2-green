@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Balance from "../components/Balance/Balance";
 import Card from "../components/Card/Card";
 import { FaRegHandPeace } from "react-icons/fa";
@@ -9,6 +10,7 @@ import ModalComponent from "../components/ModalComponent";
 import { PiRobotBold } from "react-icons/pi";
 import { VscFlame } from "react-icons/vsc";
 import { useData } from "../components/Context";
+import { useNavigate } from "react-router-dom";
 
 const boosters = {
   multitap: {
@@ -32,17 +34,43 @@ const boosters = {
   },
 };
 
+export const upgradeMultiPriceList = [
+  200, 500, 1000, 5000, 8000, 10000, 25000, 40000, 75000, 100000, 200000,
+  300000, 400000, 500000, 700000, 900000, 1000000, 1200000, 1500000, 2000000,
+];
+
 const Boost = () => {
   const [boostInfo, setBoostInfo] = useState([]);
+  const {
+    guruLeft,
+    refillLeft,
+    activateGuru,
+    activateRefill,
+    multiTap,
+    energyLimit,
+    energySpeed,
+    autoBot,
+    setMultiTap,
+    setEnergyLimit,
+    setEnergySpeed,
+    setAutoBot,
+    balanceDown,
+    balance,
+  } = useData();
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
-  const data = useData();
+  const navigate = useNavigate();
 
   const handleOpenModal = (boost) => {
     if (boost === "multitap") {
       setBoostInfo({
-        title: "Multitap",
+        title: "Upgrading Multi-Tap",
         icon_lg: <FaRegHandPeace size={60} color={"yellow"} />,
         reward: boosters.multitap.next_reward,
+        desc: "Gain +1 point per tap! Upgrade now to increase your coin tapping power!",
+        btn_text: "Enable now",
+        // btn_disable: guruLeft === 0,
+        // reward: "Free",
+        boost: true,
       });
     }
     if (boost === "energy") {
@@ -74,18 +102,44 @@ const Boost = () => {
       setBoostInfo({
         title: "Guru",
         icon_lg: <VscFlame color={"yellow"} size={60} />,
+        desc: "Your taps are worth 5x for 20 seconds!",
+        btn_text:
+          guruLeft === 0
+            ? "Not available now, comeback tomorrow "
+            : "Enable now",
+        btn_disable: guruLeft === 0,
         reward: "Free",
+        boost: true,
       });
       // send and update guru data....
     } else {
       setBoostInfo({
         title: "Refill Tank",
         icon_lg: <BsFillLightningChargeFill color={"yellow"} size={60} />,
+        desc: "Instantly fill your energy bar! Upgrade now for a full energy!",
+        btn_text:
+          guruLeft === 0
+            ? "Not available now, comeback tomorrow "
+            : "Enable now",
+        btn_disable: guruLeft === 0,
         reward: "Free",
+        boost: true,
       });
       // send and update full_tank data....
     }
     onOpen();
+  };
+
+  const handleActiveBoost = (data) => {
+    if (data.title === "Guru") {
+      activateGuru();
+      navigate("/");
+    }
+    if (data.title === "Refill Tank") {
+      activateRefill();
+      navigate("/");
+    }
+    console.log(data);
   };
 
   return (
@@ -97,67 +151,63 @@ const Boost = () => {
       <div className="flex justify-between items-center gap-1">
         {/* Guru */}
         <div
-          onClick={
-            data.guruLeft === 0 ? () => {} : () => handleDailyBoosters("guru")
-          }
+          onClick={() => handleDailyBoosters("guru")}
           className={`${
-            data.guruLeft === 0
+            guruLeft === 0
               ? "bg-gray-500"
               : "bg-gradient-to-r from-slate-700 to-slate-500"
           } w-1/2 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center h-14`}
         >
-          <VscFlame color={data.guruLeft === 0 ? "#ccc" : "yellow"} size={30} />
+          <VscFlame color={guruLeft === 0 ? "#ccc" : "yellow"} size={30} />
           <div className="flex flex-col">
             <span
               className={`${
-                data.guruLeft === 0 ? "text-gray-400" : "text-gray-100"
+                guruLeft === 0 ? "text-gray-400" : "text-gray-100"
               }`}
             >
               Taping Guru
             </span>
             <span
               className={`${
-                data.guruLeft === 0 ? "text-gray-400 text-sm" : "text-gray-100"
+                guruLeft === 0 ? "text-gray-400 text-sm" : "text-gray-100"
               }`}
             >
-              {data.guruLeft !== 0
-                ? data.guruLeft + " / " + 3
-                : "10h : 16m : 17s"}
+              {guruLeft !== 0 && guruLeft + " / " + 3}
             </span>
           </div>
         </div>
         {/* FUll Tank */}
         <div
-          onClick={() => handleDailyBoosters("full_tank")}
-          className={`w-1/2 h-14 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center ${
-            data.refillLeft === 0
-              ? "bg-gray-700"
+          onClick={() => handleDailyBoosters("refill_tank")}
+          className={`${
+            refillLeft === 0
+              ? "bg-gray-500"
               : "bg-gradient-to-r from-slate-700 to-slate-500"
-          }`}
+          } w-1/2 py-1 px-1.5 flex gap-2 border border-slate-600 rounded-lg items-center h-14`}
         >
-          <BsFillLightningChargeFill size={28} color={"yellow"} />
+          <BsFillLightningChargeFill
+            size={30}
+            color={refillLeft === 0 ? "#ccc" : "yellow"}
+          />
           <div className="flex flex-col">
             <span
               className={`${
-                data.refillLeft === 0 ? "text-gray-400" : "text-gray-100"
+                refillLeft === 0 ? "text-gray-400" : "text-gray-100"
               }`}
             >
               Full Tank
             </span>
             <span
               className={`${
-                data.refillLeft === 0
-                  ? "text-gray-400 text-xs"
-                  : "text-gray-100"
+                refillLeft === 0 ? "text-gray-400 text-sm" : "text-gray-100"
               }`}
             >
-              {data.refillLeft !== 0
-                ? data.refillLeft + " / " + 3
-                : "10h:16m:17s"}
+              {refillLeft !== 0 && refillLeft + " / " + 3}
             </span>
           </div>
         </div>
       </div>
+
       <h1 className="text-white mt-6 mb-3 font-bold text-2xl">Boosters :</h1>
       <div className="flex flex-col gap-1 items-center justify-center w-full">
         {/* Multitap */}
@@ -240,7 +290,8 @@ const Boost = () => {
         onOpen={onOpen}
         onOpenChange={onOpenChange}
         cardInfo={boostInfo}
-        // onClick={() => handleCheck(cardInfo.id)}
+        onClick={() => handleActiveBoost(boostInfo)}
+        isDisabledCheck={boostInfo.btn_disable}
       />
     </div>
   );

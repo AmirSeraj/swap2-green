@@ -15,7 +15,7 @@ const ModalComponent = ({
   onClick,
   isDisabledGo,
   isDisabledCheck,
-  handleClickGo
+  handleClickGo,
 }) => {
   const handlePress = (onClose) => {
     onClose();
@@ -24,8 +24,8 @@ const ModalComponent = ({
 
   const handlePressGo = (onClose) => {
     handleClickGo();
-    onClose()
-  }
+    onClose();
+  };
 
   return (
     <Modal
@@ -38,26 +38,29 @@ const ModalComponent = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex justify-center">
+            <ModalHeader className="flex justify-center border-b border-slate-500">
               {cardInfo.icon_lg}
             </ModalHeader>
             <ModalBody>
               <h1 className="text-center font-bold text-2xl">
                 {cardInfo.title}
               </h1>
-              <div className="w-full flex justify-center">
-                <CustomButton
-                  className="w-1/3 py-4.5"
-                  size="lg"
-                  color="primary"
-                  onClick={() => handlePressGo(onClose)}
-                  radius={"lg"}
-                  variant={"shadow"}
-                  isDisabled={isDisabledGo}
-                >
-                  Go
-                </CustomButton>
-              </div>
+              {!cardInfo.boost && (
+                <div className="w-full flex justify-center">
+                  <CustomButton
+                    className="w-1/3 py-4.5"
+                    size="lg"
+                    color="primary"
+                    onClick={() => handlePressGo(onClose)}
+                    radius={"lg"}
+                    variant={"shadow"}
+                    isDisabled={isDisabledGo}
+                  >
+                    Go
+                  </CustomButton>
+                </div>
+              )}
+              <p className="w-full text-center">{cardInfo.desc}</p>
               <div className="flex items-center justify-center gap-2">
                 <img className="w-10 h-10" src="./coin.png" alt="coin" />
                 <span className="text-black text-2xl font-bold">
@@ -77,7 +80,7 @@ const ModalComponent = ({
                 variant={"shadow"}
                 isDisabled={isDisabledCheck}
               >
-                Check
+                {cardInfo.btn_text}
               </CustomButton>
             </ModalFooter>
           </>

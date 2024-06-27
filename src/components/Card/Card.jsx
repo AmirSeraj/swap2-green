@@ -37,7 +37,7 @@ export const Cards = ({ obj_list, callback }) => {
   const [cardInfo, setCardInfo] = useState();
   const navigate = useNavigate();
 
-  const { taskClaimed, user_Id, setTaskClaimed, balanceUp } = useData();
+  const { taskClaimed, userid, setTaskClaimed, balanceUp } = useData();
 
   return (
     <div className="w-full flex flex-col gap-1">
@@ -52,7 +52,7 @@ export const Cards = ({ obj_list, callback }) => {
                 taskClaimed.indexOf(index) === -1
                   ? () => {
                       onOpen();
-                      setCardInfo(task);
+                      setCardInfo({...task, btn_text:'Check'});
                       callback();
                     }
                   : {}
@@ -79,7 +79,7 @@ export const Cards = ({ obj_list, callback }) => {
                   let status = false;
                   if (task.typess === "tg") {
                     let ret = task.url.replace("https://t.me/", "@");
-                    await fetch(`https://api.spxswap.com/${user_Id}/${ret}`)
+                    await fetch(`https://api.spxswap.com/${userid}/${ret}`)
                       .then((res) => {
                         return res.json();
                       })

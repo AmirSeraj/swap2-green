@@ -14,11 +14,11 @@ import { useData } from "../components/Context.jsx";
 
 const Earn = () => {
   const [tabActive, setTabActive] = useState(true);
+  const [loadingState, setLoadingState] = useState({});
 
   const {
     referrals,
     amount,
-    taskClaimed,
     league,
     leagueClaimed,
     setLeagueClaimed,
@@ -45,7 +45,25 @@ const Earn = () => {
   //     console.log("aaa", taskId);
   // };
 
-  const handleClaimLeague = () => {};
+  const handleClaimLeague = (index, reward) => {
+    setLoadingState((prevState) => ({ ...prevState, [index]: true }));
+
+    setTimeout(() => {
+      setLeagueClaimed([...leagueClaimed, index]);
+      balanceUp(reward);
+      setLoadingState((prevState) => ({ ...prevState, [index]: false }));
+    }, 1500);
+  };
+
+  const handleClaimRef = (index, reward) => {
+    setLoadingState((prevState) => ({ ...prevState, [index]: true }));
+
+    setTimeout(() => {
+      setRefClaimed([...refClaimed, index]);
+      balanceUp(reward);
+      setLoadingState((prevState) => ({ ...prevState, [index]: false }));
+    }, 1500);
+  };
 
   useEffect(() => {
     setTabActive("Special");
@@ -90,12 +108,7 @@ const Earn = () => {
                     //   leagueClaimed.indexOf(index) !== -1 ? true : false
                     // }
                     claimed={leagueClaimed.includes(index)}
-                    onClick={() => {
-                      setTimeout(() => {
-                        setLeagueClaimed([...leagueClaimed, index]);
-                        balanceUp(trophy.reward);
-                      },1500);
-                    }}
+                    onClick={() => handleClaimLeague(index, trophy.reward)}
                     league_img={true}
                     price={trophy.reward}
                     key={index}
@@ -104,6 +117,7 @@ const Earn = () => {
                     reward={trophy.reward}
                     energyNow={amount}
                     energyLimit={trophy.threshold}
+                    loading={loadingState[index]}
                   />
                 );
               })}
@@ -114,13 +128,17 @@ const Earn = () => {
             <div className="w-full flex flex-col gap-1 mb-1">
               {Refs.map((trophy, index) => (
                 <CardLeagRef
-                  onClick={handleClaimLeague}
+                  claimed={refClaimed.includes(index)}
+                  onClick={() => handleClaimRef(index, trophy.reward)}
                   league_img={false}
                   price={trophy.reward}
                   key={index}
                   icon={<FaUserFriends color={"white"} size={32} />}
                   title={trophy.title}
                   reward={trophy.reward}
+                  energyNow={referrals}
+                  energyLimit={trophy.threshold}
+                  loading={loadingState[index]}        
                 />
               ))}
             </div>
