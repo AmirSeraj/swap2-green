@@ -11,6 +11,7 @@ import { PiRobotBold } from "react-icons/pi";
 import { VscFlame } from "react-icons/vsc";
 import { useData } from "../components/Context";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const boosters = {
   multitap: {
@@ -38,6 +39,12 @@ export const upgradeMultiPriceList = [
   200, 500, 1000, 5000, 8000, 10000, 25000, 40000, 75000, 100000, 200000,
   300000, 400000, 500000, 700000, 900000, 1000000, 1200000, 1500000, 2000000,
 ];
+export const upgradeLimitPriceList = [
+  100, 300, 1000, 3000, 5000, 10000, 15000, 75000, 190000, 225000, 400000,
+  700000, 1000000,
+];
+export const upgradeSpeedPriceList = [5000, 30000, 150000, 400000];
+export const upgradeAutoPriceList = [200000];
 
 const Boost = () => {
   const [boostInfo, setBoostInfo] = useState([]);
@@ -57,34 +64,62 @@ const Boost = () => {
     balanceDown,
     balance,
   } = useData();
+  const [list, setList] = useState(null);
+  const [level, setLevel] = useState(null);
+  // const levelRef = useRef(multiTap);
+
+  // const multiListRef = useRef(upgradeMultiPriceList);
+  // const energyLimitList = useRef(upgradeLimitPriceList);
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   const handleOpenModal = (boost) => {
     if (boost === "multitap") {
+      setLevel(multiTap);
+      setList(upgradeMultiPriceList);
       setBoostInfo({
         title: "Upgrading Multi-Tap",
         icon_lg: <FaRegHandPeace size={60} color={"yellow"} />,
-        reward: boosters.multitap.next_reward,
+        reward: upgradeMultiPriceList[multiTap],
         desc: "Gain +1 point per tap! Upgrade now to increase your coin tapping power!",
-        btn_text: "Enable now",
-        // btn_disable: guruLeft === 0,
-        // reward: "Free",
+        btn_text:
+          balance < upgradeMultiPriceList[multiTap]
+            ? "Insufficient balance"
+            : "Enable now",
+        btn_disable: balance < upgradeMultiPriceList[multiTap],
         boost: true,
       });
     }
     if (boost === "energy") {
+      setLevel(energyLimit);
+      setList(upgradeLimitPriceList);
       setBoostInfo({
         title: "Energy Limit",
         icon_lg: <IoMdBatteryCharging size={60} color={"yellow"} />,
-        reward: boosters.energy.next_reward,
+        reward: upgradeLimitPriceList[energyLimit],
+        desc: "Increase our energy limit by +500! Upgrade now to expand your energ bank!",
+        btn_text:
+          balance < upgradeLimitPriceList[energyLimit]
+            ? "Insufficient balance"
+            : "Enable now",
+        btn_disable: balance < upgradeLimitPriceList[energyLimit],
+        boost: true,
       });
     }
     if (boost === "recharging_speed") {
+      setLevel(energySpeed);
+      setList(upgradeSpeedPriceList);
       setBoostInfo({
         title: "Recharging Speed",
         icon_lg: <BsFillLightningChargeFill size={60} color={"yellow"} />,
-        reward: boosters.recharging_speed.next_reward,
+        reward: upgradeSpeedPriceList[energySpeed],
+        desc: "Gain +1 energy per second! Upgrade now to boost your energ speed!",
+        btn_text:
+          balance < upgradeSpeedPriceList[energySpeed]
+            ? "Insufficient balance"
+            : "Enable now",
+        btn_disable: balance < upgradeSpeedPriceList[energySpeed],
+        boost: true,
       });
     }
     if (boost === "bot") {
@@ -138,6 +173,21 @@ const Boost = () => {
     if (data.title === "Refill Tank") {
       activateRefill();
       navigate("/");
+    }
+    if (balance >= list[level]) {
+      if (data.title === "Upgrading Multi-Tap") {
+        balanceDown(list[level]);
+        setMultiTap(level + 1);
+        setLevel((prevState) => prevState + 1);
+      } else if (data.title === "Energy Limit") {
+        balanceDown(list[level]);
+        setEnergyLimit(level + 1);
+        // levelRef.current = levelRef.current + 1;
+      } else if (data.title === "recharging_speed") {
+        balanceDown(list[level]);
+        setEnergySpeed(level + 1);
+        // levelRef.current = levelRef.current + 1;
+      }
     }
     console.log(data);
   };
@@ -209,60 +259,84 @@ const Boost = () => {
       </div>
 
       <h1 className="text-white mt-6 mb-3 font-bold text-2xl">Boosters :</h1>
+
       <div className="flex flex-col gap-1 items-center justify-center w-full">
         {/* Multitap */}
+
         <Card
           onClick={
-            boosters.multitap.claimed
+            multiTap >= upgradeMultiPriceList.length
               ? () => {}
               : () => handleOpenModal("multitap")
           }
           icon={
             <FaRegHandPeace
               size={28}
-              color={boosters.multitap.claimed ? "#ccc" : "yellow"}
+              color={
+                multiTap >= upgradeMultiPriceList.length ? "#ccc" : "yellow"
+              }
             />
           }
           title={"Multitap"}
-          reward={boosters.multitap.next_reward}
-          claimed={boosters.multitap.claimed}
-          boosterLevel={boosters.multitap.next_level}
+          reward={
+            multiTap === upgradeMultiPriceList.length
+              ? upgradeMultiPriceList[multiTap - 1]
+              : upgradeMultiPriceList[multiTap]
+          }
+          claimed={multiTap >= upgradeMultiPriceList.length}
+          boosterLevel={
+            multiTap === upgradeMultiPriceList.length ? multiTap : multiTap + 1
+          }
         />
 
         {/* Energy limit */}
         <Card
           onClick={
-            boosters.energy.claimed ? () => {} : () => handleOpenModal("energy")
+            energyLimit >= upgradeLimitPriceList.length
+              ? () => {}
+              : () => handleOpenModal("energy")
           }
           icon={
             <IoMdBatteryCharging
               size={28}
-              color={boosters.energy.claimed ? "#ccc" : "yellow"}
+              color={
+                energyLimit >= upgradeLimitPriceList.length ? "#ccc" : "yellow"
+              }
             />
           }
           title={"Energy Limit"}
-          reward={boosters.energy.next_reward}
-          claimed={boosters.energy.claimed}
-          boosterLevel={boosters.energy.next_level}
+          reward={
+            energyLimit === upgradeLimitPriceList.length
+              ? upgradeLimitPriceList[energyLimit - 1]
+              : upgradeLimitPriceList[energyLimit]
+          }
+          claimed={energyLimit >= upgradeLimitPriceList.length}
+          boosterLevel={
+            energyLimit === upgradeLimitPriceList.length
+              ? energyLimit
+              : energyLimit + 1
+          }
         />
 
         {/* Recharging Speed */}
         <Card
           onClick={
-            boosters.recharging_speed.claimed
+            energySpeed >= upgradeSpeedPriceList.length
               ? () => {}
               : () => handleOpenModal("recharging_speed")
           }
           icon={
             <BsFillLightningChargeFill
               size={28}
-              color={boosters.recharging_speed.claimed ? "#ccc" : "yellow"}
+              color={
+                energySpeed >= upgradeSpeedPriceList.length ? "#ccc" : "yellow"
+              }
             />
           }
           title={"Recharging Speed"}
-          reward={boosters.recharging_speed.next_reward}
-          claimed={boosters.recharging_speed.claimed}
-          boosterLevel={boosters.recharging_speed.next_level}
+          reward={upgradeSpeedPriceList[energySpeed]}
+          claimed={energySpeed >= upgradeSpeedPriceList.length}
+          boosterLevel={energySpeed + 1}
         />
 
         {/* Tap Bot */}

@@ -7,13 +7,13 @@ export const DataContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const DataProvider = ({ children }) => {
   const [userid, setUserId] = useState(0);
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState(1000000000);
   const [lastBalance, setLastBalance] = useState(0);
   const [league, setLeague] = useState(0);
   const [guru, setGuru] = useState(false);
   const [guruLeft, setGuruLeft] = useState(2);
   const [refillLeft, setRefillLeft] = useState(2);
-  const [multiTap, setMultiTap] = useState(1);
+  const [multiTap, setMultiTap] = useState(19);
 
   const [energy, setEnergy] = useState(30);
   const [energyLimit, setEnergyLimit] = useState(1);
