@@ -147,11 +147,54 @@ function App() {
 
   useEffect(() => {
     setTaskClaimed([0]);
-    setLeagueClaimed([0,1]);
-    setRefClaimed([0,1]);
-    setReferrals(25);
+    setLeagueClaimed([0, 1]);
+    setRefClaimed([0, 1]);
+    setReferrals([
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 1,
+        name: "Ashkan",
+        league: "Silver",
+        balance: 2250000,
+      },
+      {
+        id: 2,
+        name: "mohsen",
+        league: "Master",
+        balance: 4000000,
+      },
+      {
+        id: 3,
+        name: "mohsen",
+        league: "Master",
+        balance: 4008000,
+      },
+      {
+        id: 4,
+        name: "mohsen",
+        league: "Master",
+        balance: 4008000,
+      },
+      {
+        id: 5,
+        name: "Amir",
+        league: "Titanum",
+        balance: 100000,
+      },
+      {
+        id: 6,
+        name: "mohsen",
+        league: "Master",
+        balance: 4008000,
+      },
+    ]);
     setAmount(3000000);
-  },[])
+  }, []);
 
   useEffect(() => {
     if (energy !== -1) {
@@ -252,7 +295,7 @@ function App() {
       {/* {loaded ? <LoadingComponent /> : <></>} */}
       {/** add these to BrowserRouter as props */}
       {/* location={location} navigator={reactNavigator} */}
-      <BrowserRouter >
+      <BrowserRouter>
         <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
           <main>
             <Routes>

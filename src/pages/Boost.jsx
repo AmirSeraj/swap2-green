@@ -11,29 +11,6 @@ import { PiRobotBold } from "react-icons/pi";
 import { VscFlame } from "react-icons/vsc";
 import { useData } from "../components/Context";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
-
-const boosters = {
-  multitap: {
-    next_level: 14,
-    next_reward: 8000,
-    claimed: false,
-  },
-  energy: {
-    next_level: 15,
-    next_reward: 400000,
-    claimed: true,
-  },
-  recharging_speed: {
-    next_level: 17,
-    next_reward: 450000,
-    claimed: false,
-  },
-  bot: {
-    reward: 200000,
-    claimed: false,
-  },
-};
 
 export const upgradeMultiPriceList = [
   200, 500, 1000, 5000, 8000, 10000, 25000, 40000, 75000, 100000, 200000,
@@ -113,7 +90,7 @@ const Boost = () => {
         title: "Recharging Speed",
         icon_lg: <BsFillLightningChargeFill size={60} color={"yellow"} />,
         reward: upgradeSpeedPriceList[energySpeed],
-        desc: "Gain +1 energy per second! Upgrade now to boost your energ speed!",
+        desc: `Gain +${energySpeed} energy per second! Upgrade now to boost your energ speed!`,
         btn_text:
           balance < upgradeSpeedPriceList[energySpeed]
             ? "Insufficient balance"
@@ -123,10 +100,19 @@ const Boost = () => {
       });
     }
     if (boost === "bot") {
+      setLevel(0);
+      setList(upgradeAutoPriceList);
       setBoostInfo({
         title: "Tap Bot",
         icon_lg: <PiRobotBold size={60} color={"yellow"} />,
-        reward: boosters.bot.reward,
+        reward: upgradeAutoPriceList[0],
+        desc: `Gain profit even offline for 12 hours! Confirm to activate and boost our earnings!`,
+        btn_text:
+          balance < upgradeAutoPriceList[0]
+            ? "Insufficient balance"
+            : "Enable now",
+        btn_disable: balance < upgradeAutoPriceList[0],
+        boost: true,
       });
     }
     onOpen();
@@ -182,11 +168,12 @@ const Boost = () => {
       } else if (data.title === "Energy Limit") {
         balanceDown(list[level]);
         setEnergyLimit(level + 1);
-        // levelRef.current = levelRef.current + 1;
-      } else if (data.title === "recharging_speed") {
+      } else if (data.title === "Recharging Speed") {
         balanceDown(list[level]);
         setEnergySpeed(level + 1);
-        // levelRef.current = levelRef.current + 1;
+      } else if (data.title === "Tap Bot") {
+        balanceDown(list[level]);
+        setAutoBot(true);
       }
     }
     console.log(data);
@@ -334,27 +321,26 @@ const Boost = () => {
             />
           }
           title={"Recharging Speed"}
-          reward={upgradeSpeedPriceList[energySpeed]}
+          reward={
+            energySpeed === upgradeSpeedPriceList.length
+              ? upgradeSpeedPriceList[energySpeed - 1]
+              : upgradeSpeedPriceList[energySpeed]
+          }
           claimed={energySpeed >= upgradeSpeedPriceList.length}
-          boosterLevel={energySpeed + 1}
+          boosterLevel={
+            energySpeed === upgradeSpeedPriceList.length
+              ? energySpeed
+              : energySpeed + 1
+          }
         />
 
         {/* Tap Bot */}
         <Card
-          onClick={
-            boosters.recharging_speed.claimed
-              ? () => {}
-              : () => handleOpenModal("bot")
-          }
-          icon={
-            <PiRobotBold
-              size={28}
-              color={boosters.bot.claimed ? "#ccc" : "yellow"}
-            />
-          }
+          onClick={autoBot ? () => {} : () => handleOpenModal("bot")}
+          icon={<PiRobotBold size={28} color={autoBot ? "#ccc" : "yellow"} />}
           title={"Tap Bot"}
-          reward={boosters.bot.reward}
-          claimed={boosters.bot.claimed}
+          reward={upgradeAutoPriceList[0]}
+          claimed={autoBot}
         />
       </div>
 
