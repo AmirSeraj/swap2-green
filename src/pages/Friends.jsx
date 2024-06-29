@@ -6,6 +6,7 @@ import { useData } from "../components/Context.jsx";
 import { useState } from "react";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { BsPersonHearts } from "react-icons/bs";
+import { TONConnect } from "../components/Ton/TONConnect.jsx";
 
 const Friends = () => {
   const { referrals } = useData();
@@ -22,32 +23,33 @@ const Friends = () => {
   return (
     <div
       className={
-        "flex flex-col p-7 gap-3 items-center w-full h-full min-h-[100%] relative"
+        "flex flex-col p-5 gap-2 items-center w-full h-full min-h-[100%] relative"
       }
     >
-      <h1 className={"text-white font-bold text-3xl mt-5"}>Invite friends!</h1>
-      <p className={"text-sm text-white mt-3"}>
+      <TONConnect />
+      <h1 className={"text-white font-bold text-3xl mt-2"}>Invite friends!</h1>
+      <p className={"text-sm text-white mt-2"}>
         You and your friend will receive bonuses.
       </p>
 
-      <p className="text-sm text-black mt-8">
+      <p className="text-sm text-black mt-5">
         {"As they join the game, you'll be rewarded with "}
         <b>25K Tokens</b> and{" "}
         <i>2% of their tapping income without any limitation</i>
       </p>
 
       <div className={"flex flex-col w-full"}>
-        <h1 className={"text-white text-left text-xl mb-4"}>
+        <h1 className={"text-white text-left text-xl mb-2"}>
           List of your friends ({referrals.length})
         </h1>
         <div
           className={
-            "flex flex-col gap-1 w-full h-[calc(100vh-450px)] py-1   overflow-scroll"
+            "flex flex-col gap-1 w-full h-[calc(100vh-440px)] py-1 overflow-scroll"
           }
         >
-          {referrals.map((item) => (
+          {referrals?.map((item) => (
             <div
-            key={item.id}
+              key={item.id}
               className={
                 "flex items-center gap-3 py-1.5 px-3 rounded-2xl border border-slate-500 shadow-amber-950 shadow-sm bg-gradient-to-r from-slate-500 to-slate-600"
               }

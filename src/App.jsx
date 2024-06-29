@@ -286,7 +286,7 @@ function App() {
     if (!loading) {
       setTimeout(() => {
         setLoaded(false);
-      }, 1000);
+      }, 500);
     }
   }, [loading, userid]);
 

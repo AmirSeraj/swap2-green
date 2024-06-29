@@ -25,7 +25,7 @@ export const DataProvider = ({ children }) => {
   const [statsDailyPlayer, setStatsDailyPlayer] = useState(0);
   const [statsOnline, setStatsOnline] = useState(0);
 
-  const [referrals, setReferrals] = useState(0);
+  const [referrals, setReferrals] = useState([]);
   const [friends, setFriends] = useState([]);
   const [amount, setAmount] = useState(0);
   const [taskClaimed, setTaskClaimed] = useState([]);
