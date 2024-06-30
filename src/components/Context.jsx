@@ -9,7 +9,7 @@ export const DataProvider = ({ children }) => {
   const [userid, setUserId] = useState(0);
   const [balance, setBalance] = useState(200001);
   const [lastBalance, setLastBalance] = useState(0);
-  const [league, setLeague] = useState(0);
+  const [league, setLeague] = useState(4);
   const [guru, setGuru] = useState(false);
   const [guruLeft, setGuruLeft] = useState(2);
   const [refillLeft, setRefillLeft] = useState(2);

@@ -23,6 +23,7 @@ import LoadingComponent from "./components/LoadingComponent";
 import { useData } from "./components/Context.jsx";
 import { useMemo } from "react";
 import { Trophies } from "./lib/data/data.jsx";
+import Trophy from "./pages/Trophy.jsx";
 
 function App() {
   // const miniApp = useMiniApp();
@@ -150,6 +151,78 @@ function App() {
     setLeagueClaimed([0, 1]);
     setRefClaimed([0, 1]);
     setReferrals([
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
+      {
+        id: 0,
+        name: "mohamad",
+        league: "Wood",
+        balance: 250000,
+      },
       {
         id: 0,
         name: "mohamad",
@@ -305,6 +378,7 @@ function App() {
               <Route path="/earn" Component={Earn} />
               <Route path="/boost" Component={Boost} />
               <Route path="/stats" Component={Stats} />
+              <Route path="/trophy" Component={Trophy} />
             </Routes>
           </main>
           <footer>

@@ -44,7 +44,10 @@ const Exchange = () => {
         <UserInfo />
         <ExchangeTasks />
         <Balance />
-        <EnergyProgress energyNow={energy} energyLimit={energyLimit * 500} />
+        <EnergyProgress
+          energyNow={energy}
+          energyLimit={energyLimit * 500}
+        />
         <Coin />
         <EnergyBoost />
       </div>
