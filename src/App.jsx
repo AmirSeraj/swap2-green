@@ -359,33 +359,40 @@ function App() {
     if (!loading) {
       setTimeout(() => {
         setLoaded(false);
-      }, 500);
+      }, 5000);
     }
   }, [loading, userid]);
 
+  {
+    /** add these to BrowserRouter as props */
+  }
+  {
+    /* location={location} navigator={reactNavigator} */
+  }
   return (
     <NextUIProvider>
-      {/* {loaded ? <LoadingComponent /> : <></>}  */}
-      {/** add these to BrowserRouter as props */}
-      {/* location={location} navigator={reactNavigator} */}
-      <BrowserRouter>
-        <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
-          <main>
-            <Routes>
-              <Route path="/exchange" Component={Exchange} />
-              <Route path="/" Component={Exchange} />
-              <Route path="/friends" Component={Friends} />
-              <Route path="/earn" Component={Earn} />
-              <Route path="/boost" Component={Boost} />
-              <Route path="/stats" Component={Stats} />
-              <Route path="/trophy" Component={Trophy} />
-            </Routes>
-          </main>
-          <footer>
-            <Footer />
-          </footer>
-        </div>
-      </BrowserRouter>
+      {loaded ? (
+        <LoadingComponent />
+      ) : (
+        <BrowserRouter>
+          <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
+            <main>
+              <Routes>
+                <Route path="/exchange" Component={Exchange} />
+                <Route path="/" Component={Exchange} />
+                <Route path="/friends" Component={Friends} />
+                <Route path="/earn" Component={Earn} />
+                <Route path="/boost" Component={Boost} />
+                <Route path="/stats" Component={Stats} />
+                <Route path="/trophy" Component={Trophy} />
+              </Routes>
+            </main>
+            <footer>
+              <Footer />
+            </footer>
+          </div>
+        </BrowserRouter>
+      )}
     </NextUIProvider>
   );
 }
