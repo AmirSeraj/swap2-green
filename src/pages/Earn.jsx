@@ -136,8 +136,8 @@ const Earn = () => {
                   icon={<FaUserFriends color={"white"} size={32} />}
                   title={trophy.title}
                   reward={trophy.reward}
-                  energyNow={referrals}
-                  energyLimit={trophy.threshold}
+                  energyNow={Number(referrals.length)}
+                  energyLimit={Number(trophy.threshold)}
                   loading={loadingState[index]}        
                 />
               ))}

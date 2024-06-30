@@ -365,7 +365,7 @@ function App() {
 
   return (
     <NextUIProvider>
-      {/* {loaded ? <LoadingComponent /> : <></>} */}
+      {/* {loaded ? <LoadingComponent /> : <></>}  */}
       {/** add these to BrowserRouter as props */}
       {/* location={location} navigator={reactNavigator} */}
       <BrowserRouter>

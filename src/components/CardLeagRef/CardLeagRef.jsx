@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
+import { cn } from "../../lib/utils/cn.js";
 import EnergyProgress from "../Energy/EnergyProgress.jsx";
 import CustomButton from "../NextUi/CustomBtn.jsx";
+import { Button } from "../ui/MovingBorders.jsx";
 
 function CardLeagRef({
   key,
@@ -17,17 +19,19 @@ function CardLeagRef({
 }) {
   return (
     // flex flex-col gap-1 justify-center p-2 rounded-xl border border-slate-500 bg-gradient-to-b from-slate-700 to-green-200
-    <div
+
+    <Button
       key={key}
-      className={`${
-        claimed && "hidden"
-      } w-full bg-black bg-grid-white/[0.2] relative flex flex-col justify-center p-2 rounded-lg overflow-hidden gap-1`}
+      borderRadius="1.75rem"
+      duration={8000}
+      containerClassName={cn(
+        `w-full rounded-lg h-30 bg-gradient-to-r from-gray-700 via-gray-600 to-transparent`,
+        claimed && 'hidden'
+      )}
+      className={`w-full flex flex-col justify-between p-2 gap-1 rounded-lg overflow-hidden bg-transparent`}
+      claimed={claimed}
     >
-      <div
-        className="absolute pointer-events-none inset-0 flex items-center justify-center bg-[#ccc]
-                                [mask-image:radial-gradient(ellipse_at_left,transparent_20%,black)]"
-      ></div>
-      <div className={"flex gap-1 justify-between items-center"}>
+      <div className={"w-full px-2 flex gap-1 justify-between items-center"}>
         <div className={"flex items-center gap-2"}>
           {league_img ? (
             <img className={"w-10"} src={icon} alt={title} />
@@ -60,7 +64,7 @@ function CardLeagRef({
         energyLimit={energyLimit}
         topNotShow={true}
       />
-    </div>
+    </Button>
   );
 }
 

@@ -17,7 +17,7 @@ const Trophy = () => {
       <Swiper
         modules={[Navigation]}
         spaceBetween={0}
-        className={"w-[80vw] h-full"}
+        className={"w-full h-full"}
         grabCursor={true}
         mousewheel={true}
         centeredSlides={true}
@@ -27,10 +27,20 @@ const Trophy = () => {
         initialSlide={league}
       >
         {Trophies?.map((item, index) => (
-          <SwiperSlide className="w-full h-full" key={index}>
+          <SwiperSlide
+            className={`w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]
+              ${index === 0 && 'from-blue-100 from-0% to-green-500 to-80%'}
+              ${index === 1 && 'from-blue-200 from-0% to-green-500 to-80%'}
+              ${index === 2 && 'from-blue-300 from-0% to-green-500 to-80%'}
+              ${index === 3 && 'from-blue-400 from-0% to-green-500 to-80%'}
+              ${index === 4 && 'from-blue-500 from-0% to-green-500 to-80%'}
+              ${index === 5 && 'from-blue-600 from-0% to-green-500 to-80%'}
+              `}
+            key={index}
+          >
             <div className="w-full h-full flex flex-col items-center justify-around">
               <div className="flex justify-center items-center flex-col gap-2">
-                <h1 className="text-white font-bold text-2xl">
+                <h1 className="text-white font-bold text-2xl mt-5">
                   {item?.title} League
                 </h1>
                 <p className="text-slate-800 text-center text-sm">

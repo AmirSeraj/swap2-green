@@ -38,7 +38,7 @@ const Exchange = () => {
       />
       <div
         className={
-          "xs:px-11 px-6 pb-3 flex flex-col justify-evenly gap-3 items-center w-full h-full"
+          "xs:px-11 px-6 pb-3 pt-2 flex flex-col justify-evenly gap-3 items-center w-full h-full"
         }
       >
         <UserInfo />
