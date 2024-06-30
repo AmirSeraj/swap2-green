@@ -11,27 +11,27 @@ import { useNavigate } from "react-router-dom";
 const links = [
   {
     title: "Earn",
-    icon: <PiHandCoinsFill />,
+    icon: <PiHandCoinsFill size={24} />,
     href: "/earn",
   },
   {
     title: "Exchange",
-    icon: <MdCurrencyExchange />,
+    icon: <MdCurrencyExchange size={24} />,
     href: "/exchange",
   },
   {
     title: "Friends",
-    icon: <FaUserFriends />,
+    icon: <FaUserFriends size={24} />,
     href: "/friends",
   },
   {
     title: "Boost",
-    icon: <RiSpeedUpLine />,
+    icon: <RiSpeedUpLine size={24} />,
     href: "/boost",
   },
   {
     title: "Stats",
-    icon: <IoStatsChartOutline />,
+    icon: <IoStatsChartOutline size={24} />,
     href: "/stats",
   },
 ];
@@ -44,7 +44,7 @@ const Footer = () => {
     navigate("/exchange");
   }
   return (
-    <div className="w-full h-full place-content-center grid grid-cols-5 xs:gap-0.5 gap-[1px] bg-gray-800 border border-gray-700 rounded-xl xs:p-1 p-0.5 items-center">
+    <div className="w-full h-full place-content-center grid grid-cols-5 xs:gap-0.5 gap-[1px] bg-green-800 border border-gray-700 rounded-xl xs:p-1 p-0.5 items-center">
       {links.map((item, index) => {
         return (
           <Link
@@ -57,11 +57,11 @@ const Footer = () => {
               variant="shadow"
               color={path === item.href ? "primary" : "default"}
               className={
-                "flex flex-col items-center justify-center gap-1 h-12 text-xs w-16"
+                "flex flex-col items-center justify-center gap-1 h-16 text-xs w-16"
               }
             >
-              {item.title}
               {item.icon}
+              <span className="font-semibold text-[0.8rem]">{item.title}</span>
             </CustomButton>
           </Link>
         );

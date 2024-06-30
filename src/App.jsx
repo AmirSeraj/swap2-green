@@ -371,28 +371,25 @@ function App() {
   }
   return (
     <NextUIProvider>
-      {loaded ? (
-        <LoadingComponent />
-      ) : (
-        <BrowserRouter>
-          <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
-            <main>
-              <Routes>
-                <Route path="/exchange" Component={Exchange} />
-                <Route path="/" Component={Exchange} />
-                <Route path="/friends" Component={Friends} />
-                <Route path="/earn" Component={Earn} />
-                <Route path="/boost" Component={Boost} />
-                <Route path="/stats" Component={Stats} />
-                <Route path="/trophy" Component={Trophy} />
-              </Routes>
-            </main>
-            <footer>
-              <Footer />
-            </footer>
-          </div>
-        </BrowserRouter>
-      )}
+      {/* {loaded ? <LoadingComponent /> : <></>} */}
+      <BrowserRouter>
+        <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
+          <main>
+            <Routes>
+              <Route path="/exchange" Component={Exchange} />
+              <Route path="/" Component={Exchange} />
+              <Route path="/friends" Component={Friends} />
+              <Route path="/earn" Component={Earn} />
+              <Route path="/boost" Component={Boost} />
+              <Route path="/stats" Component={Stats} />
+              <Route path="/trophy" Component={Trophy} />
+            </Routes>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </div>
+      </BrowserRouter>
     </NextUIProvider>
   );
 }
