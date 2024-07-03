@@ -36,7 +36,7 @@ export const DataProvider = ({ children }) => {
   const [lastClick, setLastClick] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const [earned, setEarned] = useState(0);
+  const [earned, setEarned] = useState(10);
 
   const [imgLoad, setImgLoad] = useState(0);
 
@@ -162,7 +162,7 @@ export const DataProvider = ({ children }) => {
   function upImgLoad() {
     setImgLoad(imgLoad + 1);
   }
-  const [loaded, setLoaded] = useState(true);
+  const [loaded, setLoaded] = useState(false);
 
   const values = {
     balanceUp,

@@ -18,8 +18,6 @@ function CardLeagRef({
   loading,
 }) {
   return (
-    // flex flex-col gap-1 justify-center p-2 rounded-xl border border-slate-500 bg-gradient-to-b from-slate-700 to-green-200
-
     <Button
       key={key}
       borderRadius="1.75rem"

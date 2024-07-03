@@ -23,6 +23,8 @@ const Exchange = () => {
         title: `While you were out, Bot generated for you`,
         reward: earned,
         icon_lg: <FcLike color="red" size={58} />,
+        boost: true,
+        btn_text: 'Get Coins'
       });
       onOpen();
     }
@@ -44,10 +46,7 @@ const Exchange = () => {
         <UserInfo />
         <ExchangeTasks />
         <Balance />
-        <EnergyProgress
-          energyNow={energy}
-          energyLimit={energyLimit * 500}
-        />
+        <EnergyProgress energyNow={energy} energyLimit={energyLimit * 500} />
         <Coin />
         <EnergyBoost />
       </div>

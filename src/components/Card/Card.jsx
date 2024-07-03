@@ -52,7 +52,7 @@ export const Cards = ({ obj_list, callback }) => {
                 taskClaimed.indexOf(index) === -1
                   ? () => {
                       onOpen();
-                      setCardInfo({...task, btn_text:'Check'});
+                      setCardInfo({ ...task, btn_text: "Check" });
                       callback();
                     }
                   : {}

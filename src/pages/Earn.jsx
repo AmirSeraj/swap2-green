@@ -104,9 +104,6 @@ const Earn = () => {
               {Trophies.map((trophy, index) => {
                 return (
                   <CardLeagRef
-                    // claimed={
-                    //   leagueClaimed.indexOf(index) !== -1 ? true : false
-                    // }
                     claimed={leagueClaimed.includes(index)}
                     onClick={() => handleClaimLeague(index, trophy.reward)}
                     league_img={true}
@@ -138,7 +135,7 @@ const Earn = () => {
                   reward={trophy.reward}
                   energyNow={Number(referrals.length)}
                   energyLimit={Number(trophy.threshold)}
-                  loading={loadingState[index]}        
+                  loading={loadingState[index]}
                 />
               ))}
             </div>
