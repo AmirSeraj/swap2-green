@@ -38,7 +38,7 @@ const Trophy = () => {
               `}
             key={index}
           >
-            <div className="w-full h-full flex flex-col items-center justify-around">
+            <div className="w-full h-full flex flex-col items-center justify-around p-5">
               <div className="flex justify-center items-center flex-col gap-2">
                 <h1 className="text-white font-bold text-2xl mt-5">
                   {item?.title} League
@@ -54,7 +54,7 @@ const Trophy = () => {
                 </h1>
               )}
               {index === league && (
-                <div className="w-full">
+                <div className="w-[97%]">
                   <EnergyProgress
                     energyNow={balance}
                     energyLimit={item?.threshold}

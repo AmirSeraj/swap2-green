@@ -176,7 +176,6 @@ const Boost = () => {
         setAutoBot(true);
       }
     }
-    console.log(data);
   };
 
   return (
