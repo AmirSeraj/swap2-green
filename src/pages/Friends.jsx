@@ -32,13 +32,30 @@ const Friends = () => {
         You and your friend will receive bonuses.
       </p>
 
-      <p className="text-sm text-black mt-5">
+      <p className="text-sm text-black mt-5 text-center">
         {"As they join the game, you'll be rewarded with "}
         <b>25K Tokens</b> and{" "}
         <i>2% of their tapping income without any limitation</i>
       </p>
 
-      <div className={"flex flex-col w-full"}>
+      <div className="flex flex-col items-center gap-3 w-[75%] max-w-screen-md mt-5">
+        <span className="text-white text-center font-bold w-auto">
+          {referrals === 0
+            ? "You Have 0 Friends!!!"
+            : "You Have Successfully Invited " + referrals + " Friends"}
+        </span>
+        <span className="text-white text-center font-bold w-auto">
+          {referrals === 0
+            ? "Invite your friends and family to earn 25k"
+            : "Keep up the good work!!"}
+        </span>
+        <span className="text-white text-center font-normal w-auto">
+          Your Total Referral Rewards:{" "}
+          {Number(referrals * 25000).toLocaleString()}
+        </span>
+      </div>
+
+      {/* <div className={"flex flex-col w-full"}>
         <h1 className={"text-white text-left text-xl mb-2"}>
           List of your friends ({referrals.length})
         </h1>
@@ -79,7 +96,7 @@ const Friends = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className={"absolute w-full bottom-2 flex gap-1 px-2"}>
         <motion.div

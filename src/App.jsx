@@ -371,7 +371,7 @@ function App() {
   }
   return (
     <NextUIProvider>
-      {loaded ? <LoadingComponent /> : <></>}
+      {/*{loaded ? <LoadingComponent /> : <></>}*/}
       <BrowserRouter>
         <div className="app bg-gradient-to-b from-[#64996f] via-[#9ebf6d] to-[#c8de96] pb-2">
           <main>
